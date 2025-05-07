@@ -1,0 +1,142 @@
+METADATA {
+    id: task-1505
+    name: Fish in Spring and Fall
+    color: blue
+    
+}
+
+DESCRIPTION {
+    Some villagers decided to compete in a Fishing Tournament.
+    Which different kinds of fish did Willy catch?
+    Show the names in alphabetical order
+}
+
+ANSWER {
+    SELECT DISTINCT f.fish_name 
+    FROM fish f 
+    JOIN catching_table c 
+    ON f.fish_id = c.fish_id 
+    JOIN villager v 
+    ON c.villager_id = v.villager_id 
+    WHERE v.villager_name = 'Willy' 
+    ORDER BY f.fish_name ASC; 
+}
+
+TEST {
+    TABLE {
+        fish
+        fish_id|fish_name|difficulty|price
+        1│Anchovy│30|30
+        2│Tuna│70|100
+        3│Sardine│30|40
+        4│Largemouth Bass│50|100
+        5│Salmon│50|75
+        6│Catfish│75|200
+        7│Eel│70|85
+        8│Ghostfish│50|45
+        9│Herring│25|30
+    }
+
+    Table {
+        villager
+        villager_id|villager_name|villager_birthday_season|villager_birthday_day|villager_marriage|mother_id|father_id
+        1|Willy|2|24|No||  
+        2|Pam|1|18|No||  
+        3|Linus|4|3|No||  
+        4|Pierre|1|26|No||  
+        5|Maru|2|10|Yes|7|6  
+        6|Demeterius|2|19|No||  
+        7|Robin|3|21|No||  
+        8|Penny|3|2|Yes|2|  
+        9|Sebastian|4|10|Yes|7|  
+        10|Abigail|3|13|Yes|11|4  
+        11|Caroline|4|7|No||  
+        12|Elliot|2|9|Yes||  
+    }
+
+    Table{
+        catching_table
+        villager_id|fish_id|quantity
+        1|1|2  
+        1|2|1  
+        1|5|1  
+        1|6|2  
+        1|8|1  
+        2|1|4  
+        2|3|3  
+        2|8|5  
+        2|9|10  
+        8|6|5  
+        8|4|5  
+        9|8|1  
+        12|3|4  
+        12|7|3
+    }
+
+
+    RESULT {
+        Anchovy
+        Catfish
+        Ghostfish
+        Salmon
+        Tuna
+
+    }
+}
+
+TEST {
+    TABLE {
+        fish
+        fish_id|fish_name|difficulty|price
+        10│Carp│20│25
+        11│Pike│60│90
+        12│Sturgeon│85│200
+        13│Rainbow Trout│55│80
+        14│Crimsonfish│95│250
+        15│Midnight Carp│65│95
+    }
+
+    Table {
+        villager
+        villager_id|villager_name|villager_birthday_season|villager_birthday_day|villager_marriage|mother_id|father_id
+        1|Willy|2|24|No||  
+        2|Pam|1|18|No||  
+        3|Linus|4|3|No||  
+        4|Pierre|1|26|No||  
+        5|Maru|2|10|Yes|7|6  
+        6|Demeterius|2|19|No||  
+        7|Robin|3|21|No||  
+        8|Penny|3|2|Yes|2|  
+        9|Sebastian|4|10|Yes|7|  
+        10|Abigail|3|13|Yes|11|4  
+        11|Caroline|4|7|No||  
+        12|Elliot|2|9|Yes||  
+    }
+
+    Table{
+        catching_table
+        villager_id|fish_id|quantity
+        1|14|2  
+        1|11|2  
+        1|13|3  
+        1|15|2  
+        1|10|4  
+        2|12|4  
+        2|10|5  
+        2|15|5  
+        2|13|4  
+        8|12|7  
+        8|11|3  
+        9|14|4  
+        12|10|2  
+        12|13|1
+    }
+
+    RESULT {
+        Carp
+        Crimsonfish
+        Midnight Carp
+        Pike
+        Rainbow Trout               
+    }
+}
