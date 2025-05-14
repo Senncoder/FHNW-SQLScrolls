@@ -1,0 +1,159 @@
+METADATA {
+    id: Book-S
+    name: Stardew Valley
+    title: Stardew Valley Fishing Minigame
+    author: Mr. Qi
+    color: green
+}
+
+PAGE {
+    <b>Stardew Valley Fishing Minigame</b>
+
+    In “Stardew Valley” you leave the city and move to the countryside 
+    to take over the farm you inherited from your grandfather. 
+    Next to farming and mining, one of the main activities is fishing. 
+    This database shows during which seasons and in which locations certain fish are available. 
+    It also shows the results of a fishing tournament some of the inhabitants of Stardew Valley held.
+}
+
+
+PAGE {
+    <div class="book-img">
+        <img src="img/fish_logical.png" alt="Schema"> 
+    </div>
+}
+
+PAGE {
+    <div class="book-img">
+        <img src="img/fish_relational.png" alt="Schema"> 
+    </div>
+}
+
+PAGE {
+    The following pages show the tables.
+
+    This table shows the fish:
+
+    EXAMPLE {
+        TABLE {
+            fish
+            fish_id | fish_name | difficulty | price
+            1|Anchovy|30|30
+            2|Tuna|70|100
+            3|Sardine|30|40
+            4|Largemouth Bass|50|100
+            5|Salmon|50|75
+            6|Catfish|75|200
+            7|Eel|70|85
+            8|Ghostfish|50|45
+            9|Herring|25|30
+        }
+    }
+}
+
+
+PAGE {
+    This table lists the locations.
+    EXAMPLE {
+        TABLE {
+            location
+            location_id|location_name
+            1|Ocean
+            2|River
+            3|Lake
+            4|The Mines     
+       }
+    }
+}
+
+PAGE {
+    This table lists the seasons.
+    EXAMPLE {
+        TABLE {
+			season
+            season_id|season_name
+            1|Spring
+            2|Summer
+            3|Fall
+            4|Winter
+       }
+    }
+}
+
+PAGE {
+    This table shows the fish availability bridging table.
+    EXAMPLE {
+        TABLE {
+			fish_availability
+            fish_id|location_id|season_id
+            1|1|1
+            1|1|3
+            2|1|2
+            2|1|4
+            3|1|1
+            3|1|3
+            3|1|4
+            7|1|1
+            7|1|3
+            9|1|1
+            9|1|4
+            5|2|3
+            6|2|1
+            6|2|3
+            4|3|1
+            4|3|2
+            4|3|3
+            4|3|4
+            8|4|1
+            8|4|2
+            8|4|3
+            8|4|4    
+        }
+    }
+}
+
+PAGE {
+    This table shows the villagers.
+    EXAMPLE {
+        TABLE {
+			villager
+            villager_id|villager_name|villager_birthday_season|villager_birthday_day|villager_marriage|mother_id|father_id
+            1|Willy|2|24|No||  
+            2|Pam|1|18|No||  
+            3|Linus|4|3|No||  
+            4|Pierre|1|26|No||  
+            5|Maru|2|10|Yes|7|6  
+            6|Demeterius|2|19|No||  
+            7|Robin|3|21|No||  
+            8|Penny|3|2|Yes|2|  
+            9|Sebastian|4|10|Yes|7|  
+            10|Abigail|3|13|Yes|11|4  
+            11|Caroline|4|7|No||  
+            12|Elliot|2|9|Yes||    
+        }
+    }
+}
+
+PAGE {
+    This table shows the catching table from the fishing tournament.
+    EXAMPLE {
+        TABLE {
+			  catching_table
+            villager_id|fish_id|quantity
+            1|1|2  
+            1|2|1  
+            1|5|1  
+            1|6|2  
+            1|8|1  
+            2|1|4  
+            2|3|3  
+            2|8|5  
+            2|9|10  
+            8|6|5  
+            8|4|5  
+            9|8|1  
+            12|3|4  
+            12|7|3 
+        }
+    }
+}
